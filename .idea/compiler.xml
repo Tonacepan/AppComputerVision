@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="vision-processor-app" />
+        <module name="vision-core" />
+        <module name="vision-app" />
+        <module name="vision-ui" />
       </profile>
     </annotationProcessing>
   </component>
