@@ -3,6 +3,7 @@ package com.vision.controller;
 import com.vision.model.ColorSpaceModel;
 import com.vision.modules.colorconversion.ColorConversionView;
 import com.vision.modules.imageadjustment.ImageAdjustmentView;
+import com.vision.modules.histogram.HistogramView;
 import com.vision.util.DefaultImageGenerator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,7 +38,8 @@ public class MainController implements Initializable {
     // Vistas de módulos
     private ColorConversionView colorConversionView;
     private ImageAdjustmentView imageAdjustmentView;
-    
+    private HistogramView histogramView;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeModules();
@@ -58,8 +60,13 @@ public class MainController implements Initializable {
         Tab imageAdjustmentTab = new Tab("Ajustes de Imagen", imageAdjustmentView);
         imageAdjustmentTab.setClosable(false);
         
+        // Módulo 3: Análisis de Histogramas
+        histogramView = new HistogramView(sharedModel);
+        Tab histogramTab = new Tab("Histograma", histogramView);
+        histogramTab.setClosable(false);
+
         // Agregar tabs al TabPane
-        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab);
+        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab);
     }
     
     /**
