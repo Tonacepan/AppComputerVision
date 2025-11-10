@@ -1,6 +1,6 @@
 com/vision/modules/imageadjustment/ImageAdjustmentView.class
-com/vision/modules/colorconversion/ColorConversionView$1.class
 com/vision/modules/colorconversion/ColorConversionController.class
+com/vision/modules/colorconversion/ColorConversionView$1.class
 com/vision/controller/MainController.class
 com/vision/modules/histogram/HistogramView$1.class
 com/vision/modules/colorconversion/ColorConversionView.class

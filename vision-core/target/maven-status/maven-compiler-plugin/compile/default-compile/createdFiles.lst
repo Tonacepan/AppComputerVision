@@ -1,7 +1,7 @@
 com/vision/service/HistogramService$HistogramStats.class
 com/vision/service/ColorSpaceService.class
-com/vision/util/DefaultImageGenerator.class
 com/vision/service/ImageProcessingService$ChannelType.class
+com/vision/util/DefaultImageGenerator.class
 com/vision/model/ColorSpaceModel.class
 com/vision/core/ServiceProvider.class
 com/vision/service/HistogramService.class
