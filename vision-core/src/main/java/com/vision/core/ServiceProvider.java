@@ -4,6 +4,7 @@ import com.vision.service.ColorSpaceService;
 import com.vision.service.ImageProcessingService;
 import com.vision.service.HistogramService;
 import com.vision.service.LogicalOperationsService;
+import com.vision.service.GeometricTransformationService;
 
 /**
  * Proveedor de servicios para inyección simple de dependencias
@@ -17,12 +18,14 @@ public class ServiceProvider {
     private final ImageProcessingService imageProcessingService;
     private final HistogramService histogramService;
     private final LogicalOperationsService logicalOperationsService;
+    private final GeometricTransformationService geometricTransformationService;
 
     private ServiceProvider() {
         this.colorSpaceService = new ColorSpaceService();
         this.imageProcessingService = new ImageProcessingService();
         this.histogramService = new HistogramService();
         this.logicalOperationsService = new LogicalOperationsService();
+        this.geometricTransformationService = new GeometricTransformationService();
     }
 
     public static synchronized ServiceProvider getInstance() {
@@ -46,6 +49,10 @@ public class ServiceProvider {
 
     public LogicalOperationsService getLogicalOperationsService() {
         return logicalOperationsService;
+    }
+
+    public GeometricTransformationService getGeometricTransformationService() {
+        return geometricTransformationService;
     }
 
     /**
