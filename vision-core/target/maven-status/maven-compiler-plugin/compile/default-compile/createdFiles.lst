@@ -3,6 +3,8 @@ com/vision/service/ColorSpaceService.class
 com/vision/service/ImageProcessingService$ChannelType.class
 com/vision/util/DefaultImageGenerator.class
 com/vision/model/ColorSpaceModel.class
+com/vision/service/LogicalOperationsService$LogicalOperation.class
+com/vision/service/LogicalOperationsService.class
 com/vision/core/ServiceProvider.class
 com/vision/service/HistogramService.class
 com/vision/service/ImageProcessingService.class

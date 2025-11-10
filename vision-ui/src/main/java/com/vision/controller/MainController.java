@@ -4,6 +4,7 @@ import com.vision.model.ColorSpaceModel;
 import com.vision.modules.colorconversion.ColorConversionView;
 import com.vision.modules.imageadjustment.ImageAdjustmentView;
 import com.vision.modules.histogram.HistogramView;
+import com.vision.modules.logicaloperations.LogicalOperationsView;
 import com.vision.util.DefaultImageGenerator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,30 +23,31 @@ import java.util.ResourceBundle;
  * Arquitectura modular con separación de vistas y controladores
  */
 public class MainController implements Initializable {
-    
+
     @FXML
     private TabPane moduleTabPane;
-    
+
     @FXML
     private Button loadImageButton;
-    
+
     @FXML
     private Button loadDefaultImageButton;
-    
+
     // Modelo compartido entre todos los módulos
     private final ColorSpaceModel sharedModel = new ColorSpaceModel();
-    
+
     // Vistas de módulos
     private ColorConversionView colorConversionView;
     private ImageAdjustmentView imageAdjustmentView;
     private HistogramView histogramView;
+    private LogicalOperationsView logicalOperationsView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeModules();
         setupEventHandlers();
     }
-    
+
     /**
      * Inicializa todos los módulos de la aplicación
      */
@@ -54,21 +56,26 @@ public class MainController implements Initializable {
         colorConversionView = new ColorConversionView(sharedModel);
         Tab colorConversionTab = new Tab("Conversión de Color", colorConversionView);
         colorConversionTab.setClosable(false);
-        
+
         // Módulo 2: Ajustes de Imagen
         imageAdjustmentView = new ImageAdjustmentView(sharedModel);
         Tab imageAdjustmentTab = new Tab("Ajustes de Imagen", imageAdjustmentView);
         imageAdjustmentTab.setClosable(false);
-        
+
         // Módulo 3: Análisis de Histogramas
         histogramView = new HistogramView(sharedModel);
         Tab histogramTab = new Tab("Histograma", histogramView);
         histogramTab.setClosable(false);
 
+        // Módulo 4: Operaciones Lógicas
+        logicalOperationsView = new LogicalOperationsView(sharedModel);
+        Tab logicalOperationsTab = new Tab("Operaciones Lógicas", logicalOperationsView);
+        logicalOperationsTab.setClosable(false);
+
         // Agregar tabs al TabPane
-        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab);
+        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab);
     }
-    
+
     /**
      * Configura los event handlers para los botones principales
      */

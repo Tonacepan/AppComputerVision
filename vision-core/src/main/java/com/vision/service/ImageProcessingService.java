@@ -141,6 +141,33 @@ public class ImageProcessingService {
     }
 
     /**
+     * Binariza una imagen utilizando un umbral.
+     * La imagen primero se convierte a escala de grises.
+     *
+     * @param originalImage La imagen original.
+     * @param threshold     El umbral de binarización (0.0 a 1.0).
+     * @return Una nueva imagen binarizada (blanco y negro).
+     */
+    public WritableImage binarize(Image originalImage, double threshold) {
+        WritableImage grayImage = convertToGrayscale(originalImage);
+        int width = (int) grayImage.getWidth();
+        int height = (int) grayImage.getHeight();
+
+        WritableImage binaryImage = new WritableImage(width, height);
+        PixelReader pixelReader = grayImage.getPixelReader();
+        PixelWriter pixelWriter = binaryImage.getPixelWriter();
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                double gray = pixelReader.getColor(x, y).getRed();
+                Color newColor = (gray >= threshold) ? Color.WHITE : Color.BLACK;
+                pixelWriter.setColor(x, y, newColor);
+            }
+        }
+        return binaryImage;
+    }
+
+    /**
      * Enum para tipos de canal
      */
     private enum ChannelType {
