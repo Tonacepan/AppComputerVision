@@ -1,5 +1,6 @@
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/util/DefaultImageGenerator.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/HistogramService.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/MorphologicalService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/ImageProcessingService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/ColorSpaceService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/core/ServiceProvider.java

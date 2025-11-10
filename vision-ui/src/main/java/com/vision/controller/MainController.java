@@ -6,6 +6,7 @@ import com.vision.modules.imageadjustment.ImageAdjustmentView;
 import com.vision.modules.histogram.HistogramView;
 import com.vision.modules.logicaloperations.LogicalOperationsView;
 import com.vision.modules.geometrictransformation.GeometricTransformationView;
+import com.vision.modules.morphological.MorphologicalView;
 import com.vision.util.DefaultImageGenerator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,6 +44,7 @@ public class MainController implements Initializable {
     private HistogramView histogramView;
     private LogicalOperationsView logicalOperationsView;
     private GeometricTransformationView geometricTransformationView;
+    private MorphologicalView morphologicalView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,8 +81,13 @@ public class MainController implements Initializable {
         Tab geometricTransformationTab = new Tab("Transformaciones Geométricas", geometricTransformationView);
         geometricTransformationTab.setClosable(false);
 
+        // Módulo 6: Operaciones Morfológicas
+        morphologicalView = new MorphologicalView(sharedModel);
+        Tab morphologicalTab = new Tab("Operaciones Morfológicas", morphologicalView);
+        morphologicalTab.setClosable(false);
+
         // Agregar tabs al TabPane
-        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab);
+        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab);
     }
 
     /**

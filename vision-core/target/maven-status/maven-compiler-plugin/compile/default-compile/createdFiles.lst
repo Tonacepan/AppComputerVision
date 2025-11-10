@@ -8,6 +8,7 @@ com/vision/service/HistogramService.class
 com/vision/service/ImageProcessingService.class
 com/vision/service/HistogramService$TransformationType.class
 com/vision/model/ColorSpaceModel$ColorSpaceModelListener.class
+com/vision/service/MorphologicalService.class
 com/vision/service/ColorSpaceService.class
 com/vision/model/ColorSpaceModel.class
 com/vision/service/LogicalOperationsService$LogicalOperation.class

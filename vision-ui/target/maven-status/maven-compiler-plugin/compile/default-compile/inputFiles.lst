@@ -1,4 +1,5 @@
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/geometrictransformation/GeometricTransformationController.java
+/home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/morphological/MorphologicalView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/imageadjustment/ImageAdjustmentController.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/colorconversion/ColorConversionView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/logicaloperations/LogicalOperationsModel.java
@@ -9,6 +10,7 @@
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/histogram/HistogramView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/colorconversion/ColorConversionController.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/ui/components/ImageDisplayPanel.java
+/home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/morphological/MorphologicalController.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/histogramanalysis/HistogramAnalysisView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/_old_backup/ColorConverterView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/histogramanalysis/HistogramAnalysisController.java

@@ -1,4 +1,5 @@
 com/vision/modules/imageadjustment/ImageAdjustmentView.class
+com/vision/modules/morphological/MorphologicalView$1.class
 com/vision/modules/logicaloperations/LogicalOperationsView.class
 com/vision/modules/logicaloperations/LogicalOperationsModel.class
 com/vision/modules/colorconversion/ColorConversionView$1.class
@@ -6,12 +7,14 @@ com/vision/modules/colorconversion/ColorConversionController.class
 com/vision/controller/MainController.class
 com/vision/modules/histogram/HistogramView$1.class
 com/vision/modules/colorconversion/ColorConversionView.class
+com/vision/modules/morphological/MorphologicalController.class
 com/vision/modules/imageadjustment/ImageAdjustmentView$1.class
 com/vision/modules/histogram/HistogramView.class
 com/vision/controller/ColorConverterController.class
 com/vision/view/ColorConverterView$1.class
 com/vision/modules/geometrictransformation/GeometricTransformationController.class
 com/vision/view/ColorConverterView.class
+com/vision/modules/morphological/MorphologicalView.class
 com/vision/modules/logicaloperations/LogicalOperationsController.class
 com/vision/modules/geometrictransformation/GeometricTransformationView$1.class
 com/vision/ui/components/ImageDisplayPanel.class
