@@ -65,4 +65,29 @@ public class DefaultImageGenerator {
 
         return image;
     }
+
+    /**
+     * Creates a default square image with power-of-two dimensions (256x256) for FFT testing.
+     * It contains a simple pattern of circles.
+     */
+    public static WritableImage createDefaultPowerOfTwoImage() {
+        int size = 256;
+        WritableImage image = new WritableImage(size, size);
+        PixelWriter pixelWriter = image.getPixelWriter();
+        int centerX = size / 2;
+        int centerY = size / 2;
+
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                double dist1 = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                double dist2 = Math.sqrt(Math.pow(x - size / 4, 2) + Math.pow(y - size / 4, 2));
+                
+                double gray = (Math.sin(dist1 / 10) + Math.cos(dist2 / 20) + 2) / 4.0;
+                gray = Math.max(0, Math.min(1, gray));
+
+                pixelWriter.setColor(x, y, new Color(gray, gray, gray, 1.0));
+            }
+        }
+        return image;
+    }
 }

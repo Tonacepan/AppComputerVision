@@ -5,6 +5,7 @@ import com.vision.modules.colorconversion.ColorConversionView;
 import com.vision.modules.imageadjustment.ImageAdjustmentView;
 import com.vision.modules.histogram.HistogramView;
 import com.vision.modules.logicaloperations.LogicalOperationsView;
+import com.vision.modules.fourier.FourierView;
 import com.vision.modules.geometrictransformation.GeometricTransformationView;
 import com.vision.modules.morphological.MorphologicalView;
 import com.vision.util.DefaultImageGenerator;
@@ -35,6 +36,9 @@ public class MainController implements Initializable {
     @FXML
     private Button loadDefaultImageButton;
 
+    @FXML
+    private Button loadPowerOfTwoImageButton;
+
     // Modelo compartido entre todos los módulos
     private final ColorSpaceModel sharedModel = new ColorSpaceModel();
 
@@ -45,6 +49,7 @@ public class MainController implements Initializable {
     private LogicalOperationsView logicalOperationsView;
     private GeometricTransformationView geometricTransformationView;
     private MorphologicalView morphologicalView;
+    private FourierView fourierView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,8 +91,13 @@ public class MainController implements Initializable {
         Tab morphologicalTab = new Tab("Operaciones Morfológicas", morphologicalView);
         morphologicalTab.setClosable(false);
 
+        // Módulo 7: Transformada de Fourier
+        fourierView = new FourierView(sharedModel);
+        Tab fourierTab = new Tab("Transformada de Fourier", fourierView);
+        fourierTab.setClosable(false);
+
         // Agregar tabs al TabPane
-        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab);
+        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab, fourierTab);
     }
 
     /**
@@ -96,6 +106,7 @@ public class MainController implements Initializable {
     private void setupEventHandlers() {
         loadImageButton.setOnAction(event -> handleLoadImage());
         loadDefaultImageButton.setOnAction(event -> handleLoadDefaultImage());
+        loadPowerOfTwoImageButton.setOnAction(event -> handleLoadPowerOfTwoImage());
     }
     
     /**
@@ -136,6 +147,19 @@ public class MainController implements Initializable {
             sharedModel.setOriginalImage(defaultImage);
         } catch (Exception e) {
             showError("Error al generar imagen predeterminada: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Maneja la carga de una imagen predeterminada para Fourier.
+     */
+    private void handleLoadPowerOfTwoImage() {
+        try {
+            Image fourierImage = DefaultImageGenerator.createDefaultPowerOfTwoImage();
+            sharedModel.setOriginalImage(fourierImage);
+        } catch (Exception e) {
+            showError("Error al generar imagen para Fourier: " + e.getMessage());
             e.printStackTrace();
         }
     }

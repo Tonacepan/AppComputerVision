@@ -20,6 +20,9 @@
                   <Button fx:id="loadDefaultImageButton" 
                           text="Imagen Predeterminada" 
                           style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" />
+                  <Button fx:id="loadPowerOfTwoImageButton"
+                          text="Imagen Fourier (256x256)"
+                          style="-fx-background-color: #FFC107; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" />
                </children>
                <padding>
                   <Insets top="10.0" right="15.0" bottom="5.0" left="15.0" />
