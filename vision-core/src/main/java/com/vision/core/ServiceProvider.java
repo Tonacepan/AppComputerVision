@@ -7,6 +7,7 @@ import com.vision.service.LogicalOperationsService;
 import com.vision.service.GeometricTransformationService;
 import com.vision.service.MorphologicalService;
 import com.vision.service.FourierService;
+import com.vision.service.ConvolutionService;
 
 /**
  * Proveedor de servicios para inyección simple de dependencias
@@ -23,6 +24,7 @@ public class ServiceProvider {
     private final GeometricTransformationService geometricTransformationService;
     private final MorphologicalService morphologicalService;
     private final FourierService fourierService;
+    private final ConvolutionService convolutionService;
 
     private ServiceProvider() {
         this.colorSpaceService = new ColorSpaceService();
@@ -32,6 +34,7 @@ public class ServiceProvider {
         this.geometricTransformationService = new GeometricTransformationService();
         this.morphologicalService = new MorphologicalService();
         this.fourierService = new FourierService();
+        this.convolutionService = new ConvolutionService();
     }
 
     public static synchronized ServiceProvider getInstance() {
@@ -67,6 +70,10 @@ public class ServiceProvider {
 
     public FourierService getFourierService() {
         return fourierService;
+    }
+
+    public ConvolutionService getConvolutionService() {
+        return convolutionService;
     }
 
     /**

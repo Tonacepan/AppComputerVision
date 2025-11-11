@@ -2,9 +2,11 @@
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/morphological/MorphologicalView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/fourier/FourierView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/imageadjustment/ImageAdjustmentController.java
+/home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/convolution/ConvolutionController.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/colorconversion/ColorConversionView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/logicaloperations/LogicalOperationsModel.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/geometrictransformation/GeometricTransformationView.java
+/home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/convolution/ConvolutionView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/logicaloperations/LogicalOperationsController.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/modules/logicaloperations/LogicalOperationsView.java
 /home/tonacepan/vision/AppComputerVision/vision-ui/src/main/java/com/vision/controller/MainController.java

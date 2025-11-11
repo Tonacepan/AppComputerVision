@@ -1,11 +1,13 @@
-/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/util/DefaultImageGenerator.java
-/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/HistogramService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/MorphologicalService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/ImageProcessingService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/ColorSpaceService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/core/math/Complex.java
-/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/core/ServiceProvider.java
-/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/model/ColorSpaceModel.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/GeometricTransformationService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/FourierService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/LogicalOperationsService.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/util/DefaultImageGenerator.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/HistogramService.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/util/KernelProvider.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/ConvolutionService.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/core/ServiceProvider.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/model/ColorSpaceModel.java

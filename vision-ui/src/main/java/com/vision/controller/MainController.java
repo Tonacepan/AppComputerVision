@@ -2,11 +2,12 @@ package com.vision.controller;
 
 import com.vision.model.ColorSpaceModel;
 import com.vision.modules.colorconversion.ColorConversionView;
-import com.vision.modules.imageadjustment.ImageAdjustmentView;
-import com.vision.modules.histogram.HistogramView;
-import com.vision.modules.logicaloperations.LogicalOperationsView;
+import com.vision.modules.convolution.ConvolutionView;
 import com.vision.modules.fourier.FourierView;
 import com.vision.modules.geometrictransformation.GeometricTransformationView;
+import com.vision.modules.histogram.HistogramView;
+import com.vision.modules.imageadjustment.ImageAdjustmentView;
+import com.vision.modules.logicaloperations.LogicalOperationsView;
 import com.vision.modules.morphological.MorphologicalView;
 import com.vision.util.DefaultImageGenerator;
 import javafx.fxml.FXML;
@@ -50,6 +51,7 @@ public class MainController implements Initializable {
     private GeometricTransformationView geometricTransformationView;
     private MorphologicalView morphologicalView;
     private FourierView fourierView;
+    private ConvolutionView convolutionView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,8 +98,13 @@ public class MainController implements Initializable {
         Tab fourierTab = new Tab("Transformada de Fourier", fourierView);
         fourierTab.setClosable(false);
 
+        // Módulo 8: Convolución
+        convolutionView = new ConvolutionView(sharedModel);
+        Tab convolutionTab = new Tab("Convolución", convolutionView);
+        convolutionTab.setClosable(false);
+
         // Agregar tabs al TabPane
-        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab, fourierTab);
+        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab, fourierTab, convolutionTab);
     }
 
     /**

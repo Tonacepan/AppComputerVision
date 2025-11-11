@@ -14,10 +14,13 @@ com/vision/controller/MainController.class
 com/vision/modules/colorconversion/ColorConversionView.class
 com/vision/modules/morphological/MorphologicalController.class
 com/vision/modules/fourier/FourierView.class
+com/vision/modules/convolution/ConvolutionView.class
 com/vision/modules/fourier/FourierController.class
 com/vision/modules/imageadjustment/ImageAdjustmentView$1.class
 com/vision/modules/histogram/HistogramView.class
 com/vision/controller/ColorConverterController.class
+com/vision/modules/convolution/ConvolutionController.class
+com/vision/modules/convolution/ConvolutionView$1.class
 com/vision/view/ColorConverterView.class
 com/vision/modules/morphological/MorphologicalView.class
 com/vision/modules/geometrictransformation/GeometricTransformationView$1.class
