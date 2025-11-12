@@ -2,104 +2,112 @@
 
 ## 1. Introducción
 
-Este documento detalla la arquitectura técnica y la implementación de los diferentes módulos de la aplicación **Vision Processor**. El objetivo de la aplicación es proporcionar un entorno modular para realizar operaciones de procesamiento de imágenes, desde conversiones de color básicas hasta algoritmos complejos de detección de bordes y esquinas.
+Este documento proporciona una descripción técnica detallada de la aplicación **Vision Processor**. El objetivo es servir como una guía de referencia sobre las funcionalidades implementadas, los algoritmos utilizados y las instrucciones para compilar y ejecutar el proyecto.
 
-## 2. Arquitectura General
+## 2. Tecnologías Principales
 
-El proyecto sigue una **arquitectura modular** basada en Maven, diseñada para maximizar la cohesión y minimizar el acoplamiento entre las diferentes áreas de la aplicación.
+*   **Lenguaje**: Java 17
+*   **Framework de UI**: JavaFX 17
+*   **Gestión de Proyecto y Dependencias**: Apache Maven
 
-### 2.1. Estructura de Módulos
+## 3. Guía de Funcionalidades
 
--   **`vision-core`**: El corazón de la aplicación. Contiene toda la lógica de negocio, los algoritmos de procesamiento de imágenes y los modelos de datos. Es completamente independiente de la interfaz de usuario.
--   **`vision-ui`**: La capa de presentación. Contiene todos los componentes de la interfaz de usuario, construidos con JavaFX. Se organiza en sub-módulos que corresponden a las funcionalidades ofrecidas.
--   **`vision-app`**: El punto de entrada de la aplicación. Su única responsabilidad es iniciar la aplicación JavaFX y ensamblar los módulos `core` y `ui`.
+La aplicación está organizada en módulos funcionales, cada uno presentado como una pestaña en la interfaz de usuario. A continuación se detallan las operaciones disponibles en cada módulo.
 
-### 2.2. Patrones de Diseño
+### 3.1. Módulo: Conversión de Color
 
--   **Singleton**: Utilizado en `ServiceProvider` para garantizar una única instancia de los servicios de la aplicación, facilitando una forma simple de inyección de dependencias.
--   **Modelo-Vista-Controlador (MVC)**: Cada módulo de la UI sigue una variación de este patrón, donde la `View` (Vista) es responsable de la presentación, el `Controller` (Controlador) maneja la interacción del usuario y el `Model` (Modelo) (compartido) mantiene el estado.
--   **Observer**: El `ColorSpaceModel` notifica a las vistas de cualquier cambio en la imagen cargada, permitiendo que la UI se actualice automáticamente.
+*   **Responsable**: `ColorSpaceService.java`
+*   **Funcionalidades**:
+    *   **Conversión RGB a CMY**: Transforma el modelo de color de aditivo (Rojo, Verde, Azul) a sustractivo (Cian, Magenta, Amarillo).
+    *   **Conversión RGB a HSI/HSV**: Transforma el modelo de color a modelos basados en la percepción humana (Tono, Saturación, Intensidad/Valor).
+    *   **Extracción de Canales**: Permite visualizar individualmente los canales de los diferentes modelos de color (R, G, B, C, M, Y, H, S, I).
 
----
+### 3.2. Módulo: Ajustes de Imagen
 
-## 3. Módulo `vision-core`: Servicios y Algoritmos
+*   **Responsable**: `ImageProcessingService.java`
+*   **Funcionalidades**:
+    *   **Conversión a Escala de Grises**: Simplifica la imagen a un solo canal de intensidad.
+    *   **Ajuste de Brillo**: Aumenta o disminuye la luminosidad general de la imagen.
+    *   **Ajuste de Contraste**: Aumenta o disminuye la diferencia entre las áreas claras y oscuras.
+    *   **Binarización**: Convierte la imagen a blanco y negro puro basándose en un umbral de luminosidad.
 
-Este módulo contiene la implementación de todos los algoritmos de procesamiento de imágenes.
+### 3.3. Módulo: Histograma
 
-### 3.1. `ServiceProvider`
+*   **Responsable**: `HistogramService.java`
+*   **Funcionalidades**:
+    *   **Cálculo y Visualización**: Genera y muestra los histogramas para los canales de color (RGB) y la escala de grises.
+    *   **Ecualización del Histograma**: Redistribuye las intensidades para mejorar el contraste global.
+    *   **Expansión del Histograma (Normalización)**: Estira el rango de intensidades para que ocupe todo el espectro posible.
+    *   **Contracción del Histograma**: Reduce el rango de intensidades.
 
-Actúa como un registro central para todos los servicios. Proporciona un punto de acceso único (`getInstance()`) para que los controladores de la UI obtengan las instancias de los servicios que necesitan.
+### 3.4. Módulo: Operaciones Lógicas
 
-### 3.2. `ImageProcessingService`
+*   **Responsable**: `LogicalOperationsService.java`
+*   **Funcionalidades**:
+    *   Aplica operaciones a nivel de bits (`AND`, `OR`, `XOR`, `NOT`) entre dos imágenes o entre una imagen y una constante.
 
-Contiene algoritmos básicos de manipulación de píxeles.
--   `convertToGrayscale(Image)`: Convierte una imagen a escala de grises.
--   `adjustBrightness(Image, double)`: Ajusta el brillo de la imagen.
--   `adjustContrast(Image, double)`: Ajusta el contraste de la imagen.
--   `binarize(Image, double)`: Convierte una imagen a blanco y negro basado en un umbral.
+### 3.5. Módulo: Transformaciones Geométricas
 
-### 3.3. `ColorSpaceService`
+*   **Responsable**: `GeometricTransformationService.java`
+*   **Funcionalidades**:
+    *   **Traslación**: Mueve la imagen a una nueva posición.
+    *   **Escalado**: Cambia el tamaño de la imagen.
+    *   **Rotación**: Gira la imagen un ángulo determinado.
+    *   **Deformación (Shearing)**: Inclina la imagen horizontal o verticalmente.
 
-Realiza conversiones entre diferentes modelos de color.
--   `convertRgbToCmy(Image)`
--   `convertRgbToCmyk(Image)`
--   `convertRgbToYiq(Image)`
--   `convertRgbToHsi(Image)`
--   `convertRgbToHsv(Image)`
+### 3.6. Módulo: Operaciones Morfológicas
 
-### 3.4. `FourierService`
+*   **Responsable**: `MorphologicalService.java`
+*   **Funcionalidades**:
+    *   **Erosión**: Reduce el tamaño de las áreas de primer plano (objetos blancos).
+    *   **Dilatación**: Aumenta el tamaño de las áreas de primer plano.
+    *   **Apertura**: Realiza una erosión seguida de una dilatación (elimina ruido tipo "sal").
+    *   **Cierre**: Realiza una dilatación seguida de una erosión (rellena huecos y elimina ruido tipo "pimienta").
 
-Implementa la Transformada de Fourier para análisis en el dominio de la frecuencia.
--   `fft(Image)`: Calcula la Transformada Rápida de Fourier (FFT) 2D de una imagen. Requiere que la imagen sea cuadrada y con dimensiones de potencia de dos.
--   `inverseFft(Complex[][])`: Calcula la transformada inversa para reconstruir la imagen.
--   `getSpectrumView(Complex[][])`: Genera una imagen visible del espectro de Fourier (magnitud en escala logarítmica).
+### 3.7. Módulo: Transformada de Fourier
 
-### 3.5. `ConvolutionService`
+*   **Responsable**: `FourierService.java`
+*   **Funcionalidades**:
+    *   **Transformada Discreta de Fourier (DFT)**: Convierte la imagen del dominio espacial al dominio de la frecuencia.
+    *   **Visualización del Espectro**: Muestra la magnitud del espectro de frecuencias.
+    *   **Transformada Inversa de Fourier**: Reconstruye la imagen desde el dominio de la frecuencia.
+    *   **Filtrado en Frecuencia**: Permite aplicar filtros pasa-bajas y pasa-altas en el espectro.
 
-Proporciona la funcionalidad de convolución, que es la base para los filtros espaciales.
--   `convolve(Image, double[][])`: Aplica un kernel (matriz) de convolución a una imagen en escala de grises.
--   `applyLowPassFilter(Image, LowPass)`: Aplica filtros de promediado para suavizar la imagen.
--   `applyHighPassFilter(Image, HighPass)`: Aplica filtros de realce para enfocar los detalles.
--   `applyCannyEdgeDetector(Image, double, double)`: Implementa el algoritmo de Canny para detectar bordes, que internamente utiliza convoluciones para el suavizado y el cálculo de gradientes.
+### 3.8. Módulo: Convolución
 
-### 3.6. `CornerDetectionService`
+*   **Responsable**: `ConvolutionService.java`
+*   **Funcionalidades**:
+    *   **Aplicación de Kernels**: Permite aplicar matrices de convolución (kernels) para efectos como:
+        *   Desenfoque (Blur).
+        *   Realce de Bordes (Edge Enhancement).
+        *   Repujado (Emboss).
+        *   Detección de Bordes con kernels Prewitt, Sobel y Roberts.
 
-Implementa algoritmos para la detección de bordes y esquinas.
--   `applyKirsch(Image)`: Aplica los 8 kernels de Kirsch para detectar bordes en diferentes orientaciones, mostrando la máxima respuesta.
--   `applyFreiChen(Image)`: Utiliza los 9 kernels de la base ortogonal de Frei-Chen para detectar bordes.
--   `applyHarris(Image, double, double)`: Implementa el detector de esquinas de Harris-Stephens para encontrar puntos de interés (esquinas) en la imagen.
+### 3.9. Módulo: Detección de Esquinas
 
-### 3.7. Utilidades (`KernelProvider`, `DefaultImageGenerator`)
+*   **Responsable**: `CornerDetectionService.java`
+*   **Funcionalidades**:
+    *   **Detector de Kirsch**: Algoritmo para la detección de bordes usando 8 máscaras orientadas.
+    *   **Detector de Frei-Chen**: Método para la detección de bordes y líneas usando una base de vectores ortogonales.
+    *   **Detector de Esquinas de Harris**: Algoritmo para identificar puntos de interés (esquinas) en la imagen.
 
--   **`KernelProvider`**: Almacena y provee las matrices (kernels) estándar utilizadas en `ConvolutionService` y `CornerDetectionService`, como Sobel, Kirsch, Frei-Chen, etc.
--   **`DefaultImageGenerator`**: Crea imágenes de prueba con patrones predefinidos para facilitar la depuración y el uso de la aplicación.
+## 4. Compilación y Ejecución
 
----
+El proyecto se gestiona con Maven, lo que simplifica su compilación y ejecución.
 
-## 4. Módulo `vision-ui`: Interfaz de Usuario
+1.  **Requisitos Previos**:
+    *   JDK 17 o superior.
+    *   Apache Maven 3.6 o superior.
 
-La interfaz está organizada en pestañas, donde cada una representa un módulo funcional.
-
--   **`MainController`**: Orquesta la aplicación, maneja la carga de imágenes y la inicialización de los módulos.
--   **Modelo Compartido (`ColorSpaceModel`)**: Una instancia de este modelo se comparte entre todas las vistas. Contiene la imagen original cargada por el usuario. Las vistas se suscriben a los cambios de este modelo para actualizarse cuando se carga una nueva imagen.
--   **Módulos de Vista/Controlador**: Cada funcionalidad (ej. `fourier`, `convolution`) tiene su propio paquete con una `View` y un `Controller`. La `View` define la interfaz y los controles, mientras que el `Controller` responde a las acciones del usuario, llama al servicio correspondiente en el `core` y actualiza la vista con el resultado.
-
----
-
-## 5. Cómo Compilar y Ejecutar
-
-El proyecto se gestiona con Maven.
-
-1.  **Compilar e Instalar**:
-    Este comando limpia el proyecto, compila todo el código y empaqueta los módulos en archivos `.jar`.
-
+2.  **Compilar el Proyecto**:
+    Abre una terminal en la raíz del proyecto y ejecuta el siguiente comando. Este comando limpiará, compilará y empaquetará todos los módulos.
     ```sh
     mvn clean install
     ```
 
-2.  **Ejecutar la Aplicación**:
-    Este comando ejecuta la aplicación desde el módulo `vision-app`.
-
+3.  **Ejecutar la Aplicación**:
+    Una vez compilado el proyecto, utiliza el siguiente comando para iniciar la aplicación.
     ```sh
     mvn javafx:run -pl vision-app
     ```
+    El flag `-pl vision-app` le indica a Maven que ejecute el plugin de JavaFX específicamente en el módulo `vision-app`.
