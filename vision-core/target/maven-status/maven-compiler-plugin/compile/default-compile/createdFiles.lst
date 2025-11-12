@@ -17,4 +17,5 @@ com/vision/service/ConvolutionService.class
 com/vision/service/ColorSpaceService.class
 com/vision/model/ColorSpaceModel.class
 com/vision/service/LogicalOperationsService$LogicalOperation.class
+com/vision/service/CornerDetectionService.class
 com/vision/core/math/Complex.class

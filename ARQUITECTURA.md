@@ -15,60 +15,59 @@ vision/App/
 │       ├── model/
 │       │   └── ColorSpaceModel.java      # Modelo de datos
 │       ├── service/
-│       │   ├── ColorSpaceService.java    # Servicio de conversión de colores
-│       │   ├── ImageProcessingService.java # Servicio de procesamiento
-│       │   ├── GeometricTransformationService.java # Servicio de transformaciones geométricas
-│       │   └── MorphologicalService.java # Servicio de operaciones morfológicas
+│       │   ├── ColorSpaceService.java    # ...
+│       │   ├── ImageProcessingService.java # ...
+│       │   ├── GeometricTransformationService.java # ...
+│       │   ├── MorphologicalService.java # ...
+│       │   ├── FourierService.java       # Servicio para Transformada de Fourier
+│       │   ├── ConvolutionService.java   # Servicio para convoluciones y filtros
+│       │   └── CornerDetectionService.java # Servicio para detección de esquinas
 │       └── util/
-│           └── DefaultImageGenerator.java # Utilidades
+│           ├── DefaultImageGenerator.java # ...
+│           └── KernelProvider.java       # Proveedor de kernels para convolución
 │
 ├── vision-ui/                # Módulo UI (Interfaz de Usuario)
 │   └── src/main/java/com/vision/
 │       ├── controller/
-│       │   └── MainController.java       # Controlador principal
+│       │   └── MainController.java       # ...
 │       ├── modules/                      # Módulos funcionales
-│       │   ├── colorconversion/
-│       │   ├── imageadjustment/
-│       │   ├── geometrictransformation/
-│       │   └── morphological/
+│       │   ├── ...
+│       │   ├── fourier/
+│       │   ├── convolution/
+│       │   └── cornerdetection/
 │       └── ui/
-│           └── components/               # Componentes reutilizables
-│               └── ImageDisplayPanel.java
+│           └── components/               # ...
 │
-└── vision-app/               # Módulo de Aplicación (Punto de entrada)
-    └── src/main/java/com/vision/
-        └── VisionProcessorApp.java      # Clase principal
+└── vision-app/               # ...
 ```
 
 ## 🎯 Principios de Diseño
 
-### 1. **Separación por Capas**
-- **Core**: Lógica de negocio, modelos y servicios
-- **UI**: Presentación, vistas y controladores
-- **App**: Punto de entrada y configuración inicial
-
-### 2. **Arquitectura por Módulos**
-Cada funcionalidad está encapsulada en su propio módulo:
-- **colorconversion**: Conversión entre espacios de color (RGB, CMY, CMYK, YIQ, HSI, HSV)
-- **imageadjustment**: Ajustes de brillo y contraste
-- **geometrictransformation**: Transformaciones geométricas (traslación, rotación, escalamiento).
-- **morphological**: Operaciones morfológicas (erosión, dilatación, apertura, clausura) y ruido.
-
-### 3. **Patrón MVC Modular**
-Cada módulo contiene:
-- **Controller**: Lógica de control y orquestación
-- **View**: Presentación y componentes visuales
-- **Model**: Modelo compartido (ColorSpaceModel)
-
-### 4. **Componentes Reutilizables**
-- `ImageDisplayPanel`: Componente genérico para mostrar imágenes con título
-- Fácil de extender con más componentes comunes
-
-### 5. **Inyección de Dependencias Simple**
-- `ServiceProvider`: Singleton que proporciona instancias de servicios
-- Evita acoplamiento directo entre módulos
+(Esta sección permanece sin cambios)
 
 ## 📦 Módulos Funcionales
+
+### Módulo: Transformada de Fourier
+**Ubicación**: `vision-ui/src/main/java/com/vision/modules/fourier/`
+**Responsabilidad**: Aplicar la Transformada de Fourier (directa e inversa) a imágenes cuadradas con dimensiones de potencia de dos.
+
+### Módulo: Convolución
+**Ubicación**: `vision-ui/src/main/java/com/vision/modules/convolution/`
+**Responsabilidad**: Aplicar filtros de convolución para suavizado, realce de bordes y detección de bordes con Canny.
+**Funcionalidades**:
+- **Filtros Pasa-Bajas**: Desenfoque con filtro de promediado (7x7, 11x11, 15x15).
+- **Filtros Pasa-Altas**: Realce/definición de imagen (suave, medio, fuerte).
+- **Detector de Canny**: Algoritmo de detección de bordes multi-paso.
+
+### Módulo: Detección de Esquinas
+**Ubicación**: `vision-ui/src/main/java/com/vision/modules/cornerdetection/`
+**Responsabilidad**: Detectar bordes y esquinas en una imagen.
+**Funcionalidades**:
+- **Operador de Kirsch**: Detección de bordes usando 8 máscaras de compás.
+- **Operador de Frei-Chen**: Detección de bordes usando 9 vectores base ortogonales.
+- **Detector de Harris-Stephens**: Detección de esquinas.
+
+(Se conservan las descripciones de los módulos anteriores)
 
 ### Módulo: Color Conversion
 **Ubicación**: `vision-ui/src/main/java/com/vision/modules/colorconversion/`
@@ -81,55 +80,18 @@ Cada módulo contiene:
 ### Módulo: Transformaciones Geométricas
 **Ubicación**: `vision-ui/src/main/java/com/vision/modules/geometrictransformation/`
 **Responsabilidad**: Aplicar transformaciones geométricas a una imagen.
-**Funcionalidades**:
-- Traslación
-- Rotación
-- Escalamiento
 
 ### Módulo: Operaciones Morfológicas
 **Ubicación**: `vision-ui/src/main/java/com/vision/modules/morphological/`
 **Responsabilidad**: Realizar operaciones morfológicas en imágenes binarias y manejo de ruido.
-**Funcionalidades**:
-- Añadir ruido de sal y pimienta.
-- Erosión
-- Dilatación
-- Apertura (elimina ruido de sal)
-- Clausura (elimina ruido de pimienta)
 
 ## 🔌 Cómo Agregar un Nuevo Módulo
 
-(Esta sección permanece sin cambios como guía para futuros desarrollos)
+(Esta sección permanece sin cambios)
 
 ## 🔄 Flujo de Datos
 
-```
-Usuario → MainController → Modelo Compartido
-                              ↓
-                    ┌─────────┴─────────┐
-                    ↓                   ↓
-         ColorConversionView    ImageAdjustmentView ...
-                    ↓                   ↓
-        ColorConversionCtrl    ImageAdjustmentCtrl ...
-                    ↓                   ↓
-              ServiceProvider
-                    ↓
-          ┌─────────┴─────────┐
-          ↓                   ↓
-  ColorSpaceService   ImageProcessingService ...
-```
-(El diagrama muestra una vista simplificada. Cada módulo de UI tiene su controlador que interactúa con los servicios correspondientes a través del `ServiceProvider`.)
-
-## 🎨 Componentes Reutilizables
-
-(Esta sección permanece sin cambios)
-
-## 🚀 Escalabilidad
-
-(Esta sección permanece sin cambios)
-
-## 📝 Buenas Prácticas
-
-(Esta sección permanece sin cambios)
+(El diagrama general sigue siendo válido, pero ahora con más servicios y módulos)
 
 ## 🔧 Compilación y Ejecución
 

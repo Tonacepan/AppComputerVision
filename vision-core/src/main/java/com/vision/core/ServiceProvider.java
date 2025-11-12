@@ -8,6 +8,7 @@ import com.vision.service.GeometricTransformationService;
 import com.vision.service.MorphologicalService;
 import com.vision.service.FourierService;
 import com.vision.service.ConvolutionService;
+import com.vision.service.CornerDetectionService;
 
 /**
  * Proveedor de servicios para inyección simple de dependencias
@@ -25,6 +26,7 @@ public class ServiceProvider {
     private final MorphologicalService morphologicalService;
     private final FourierService fourierService;
     private final ConvolutionService convolutionService;
+    private final CornerDetectionService cornerDetectionService;
 
     private ServiceProvider() {
         this.colorSpaceService = new ColorSpaceService();
@@ -35,6 +37,7 @@ public class ServiceProvider {
         this.morphologicalService = new MorphologicalService();
         this.fourierService = new FourierService();
         this.convolutionService = new ConvolutionService();
+        this.cornerDetectionService = new CornerDetectionService();
     }
 
     public static synchronized ServiceProvider getInstance() {
@@ -74,6 +77,10 @@ public class ServiceProvider {
 
     public ConvolutionService getConvolutionService() {
         return convolutionService;
+    }
+
+    public CornerDetectionService getCornerDetectionService() {
+        return cornerDetectionService;
     }
 
     /**

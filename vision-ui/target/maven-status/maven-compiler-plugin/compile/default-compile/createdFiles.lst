@@ -1,10 +1,11 @@
 com/vision/modules/logicaloperations/LogicalOperationsModel.class
 com/vision/modules/colorconversion/ColorConversionView$1.class
 com/vision/modules/histogram/HistogramView$1.class
+com/vision/modules/cornerdetection/CornerDetectionView$1.class
 com/vision/view/ColorConverterView$1.class
 com/vision/modules/geometrictransformation/GeometricTransformationController.class
-com/vision/modules/fourier/FourierView$1.class
 com/vision/modules/logicaloperations/LogicalOperationsController.class
+com/vision/modules/fourier/FourierView$1.class
 com/vision/modules/imageadjustment/ImageAdjustmentController.class
 com/vision/modules/imageadjustment/ImageAdjustmentView.class
 com/vision/modules/morphological/MorphologicalView$1.class
@@ -20,10 +21,12 @@ com/vision/modules/imageadjustment/ImageAdjustmentView$1.class
 com/vision/modules/histogram/HistogramView.class
 com/vision/controller/ColorConverterController.class
 com/vision/modules/convolution/ConvolutionController.class
+com/vision/modules/cornerdetection/CornerDetectionView.class
 com/vision/modules/convolution/ConvolutionView$1.class
 com/vision/view/ColorConverterView.class
 com/vision/modules/morphological/MorphologicalView.class
 com/vision/modules/geometrictransformation/GeometricTransformationView$1.class
+com/vision/modules/cornerdetection/CornerDetectionController.class
 com/vision/ui/components/ImageDisplayPanel.class
 com/vision/modules/histogram/HistogramController.class
 com/vision/modules/geometrictransformation/GeometricTransformationView.class

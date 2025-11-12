@@ -17,6 +17,31 @@ public class KernelProvider {
         SHARPEN_STRONG
     }
 
+    // --- KIRSCH KERNELS ---
+    public static final double[][] KIRSCH_N = {{5, 5, 5}, {-3, 0, -3}, {-3, -3, -3}};
+    public static final double[][] KIRSCH_NW = {{5, 5, -3}, {5, 0, -3}, {-3, -3, -3}};
+    public static final double[][] KIRSCH_W = {{5, -3, -3}, {5, 0, -3}, {5, -3, -3}};
+    public static final double[][] KIRSCH_SW = {{-3, -3, -3}, {5, 0, -3}, {5, 5, -3}};
+    public static final double[][] KIRSCH_S = {{-3, -3, -3}, {-3, 0, -3}, {5, 5, 5}};
+    public static final double[][] KIRSCH_SE = {{-3, -3, -3}, {-3, 0, 5}, {-3, 5, 5}};
+    public static final double[][] KIRSCH_E = {{-3, -3, 5}, {-3, 0, 5}, {-3, -3, 5}};
+    public static final double[][] KIRSCH_NE = {{-3, 5, 5}, {-3, 0, 5}, {-3, -3, -3}};
+    public static final double[][][] KIRSCH_ALL = {KIRSCH_N, KIRSCH_NW, KIRSCH_W, KIRSCH_SW, KIRSCH_S, KIRSCH_SE, KIRSCH_E, KIRSCH_NE};
+
+    // --- FREI-CHEN KERNELS ---
+    private static final double S2 = Math.sqrt(2);
+    public static final double[][] FREI_CHEN_F1 = {{1, S2, 1}, {0, 0, 0}, {-1, -S2, -1}};
+    public static final double[][] FREI_CHEN_F2 = {{1, 0, -1}, {S2, 0, -S2}, {1, 0, -1}};
+    public static final double[][] FREI_CHEN_F3 = {{0, -1, S2}, {1, 0, -1}, {-S2, 1, 0}};
+    public static final double[][] FREI_CHEN_F4 = {{S2, -1, 0}, {-1, 0, 1}, {0, 1, -S2}};
+    public static final double[][] FREI_CHEN_F5 = {{0, 1, 0}, {-1, 0, -1}, {0, 1, 0}};
+    public static final double[][] FREI_CHEN_F6 = {{-1, 0, 1}, {0, 0, 0}, {1, 0, -1}};
+    public static final double[][] FREI_CHEN_F7 = {{1, -2, 1}, {-2, 4, -2}, {1, -2, 1}};
+    public static final double[][] FREI_CHEN_F8 = {{-2, 1, -2}, {1, 4, 1}, {-2, 1, -2}};
+    public static final double[][] FREI_CHEN_F9 = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
+    public static final double[][][] FREI_CHEN_ALL = {FREI_CHEN_F1, FREI_CHEN_F2, FREI_CHEN_F3, FREI_CHEN_F4, FREI_CHEN_F5, FREI_CHEN_F6, FREI_CHEN_F7, FREI_CHEN_F8, FREI_CHEN_F9};
+
+
     private static final Map<LowPass, double[][]> lowPassKernels = new HashMap<>();
     private static final Map<HighPass, double[][]> highPassKernels = new HashMap<>();
 

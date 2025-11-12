@@ -3,6 +3,7 @@ package com.vision.controller;
 import com.vision.model.ColorSpaceModel;
 import com.vision.modules.colorconversion.ColorConversionView;
 import com.vision.modules.convolution.ConvolutionView;
+import com.vision.modules.cornerdetection.CornerDetectionView;
 import com.vision.modules.fourier.FourierView;
 import com.vision.modules.geometrictransformation.GeometricTransformationView;
 import com.vision.modules.histogram.HistogramView;
@@ -52,6 +53,7 @@ public class MainController implements Initializable {
     private MorphologicalView morphologicalView;
     private FourierView fourierView;
     private ConvolutionView convolutionView;
+    private CornerDetectionView cornerDetectionView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -103,8 +105,13 @@ public class MainController implements Initializable {
         Tab convolutionTab = new Tab("Convolución", convolutionView);
         convolutionTab.setClosable(false);
 
+        // Módulo 9: Detección de Esquinas
+        cornerDetectionView = new CornerDetectionView(sharedModel);
+        Tab cornerDetectionTab = new Tab("Detección de Esquinas", cornerDetectionView);
+        cornerDetectionTab.setClosable(false);
+
         // Agregar tabs al TabPane
-        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab, fourierTab, convolutionTab);
+        moduleTabPane.getTabs().addAll(colorConversionTab, imageAdjustmentTab, histogramTab, logicalOperationsTab, geometricTransformationTab, morphologicalTab, fourierTab, convolutionTab, cornerDetectionTab);
     }
 
     /**

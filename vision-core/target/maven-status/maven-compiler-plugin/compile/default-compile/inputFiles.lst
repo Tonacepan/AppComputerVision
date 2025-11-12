@@ -11,3 +11,4 @@
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/ConvolutionService.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/core/ServiceProvider.java
 /home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/model/ColorSpaceModel.java
+/home/tonacepan/vision/AppComputerVision/vision-core/src/main/java/com/vision/service/CornerDetectionService.java
